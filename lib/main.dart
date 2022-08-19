@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_examples/screens/counter.dart';
+import 'package:flutter_provider_examples/provider/theme_provider.dart';
+import 'package:flutter_provider_examples/screens/home.dart';
 import 'package:provider/provider.dart';
-import 'provider/counter_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ThemeProvider can't be access here using the above context
     return ChangeNotifierProvider(
-      create: (context) => CounterProvider(),
-      child: const MaterialApp(
-        home: CounterPage(),
-      ),
+      create: (context) => ThemeProvider(),
+      builder: (context, child) {
+        final provider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+          theme: provider.theme,
+          home: const HomePage(),
+        );
+      },
+      // child: MaterialApp(
+      //   theme: provider.theme,
+      //   home: const HomePage(),
+      // ),
     );
   }
 }

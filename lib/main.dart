@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ThemeProvider can't be access here using the above context
     return ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
       builder: (context, child) {
@@ -22,10 +21,6 @@ class MyApp extends StatelessWidget {
           home: const HomePage(),
         );
       },
-      // child: MaterialApp(
-      //   theme: provider.theme,
-      //   home: const HomePage(),
-      // ),
     );
   }
 }

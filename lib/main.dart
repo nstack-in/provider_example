@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_examples/provider/counter_provider.dart';
-import 'package:flutter_provider_examples/provider/theme_provider.dart';
+import 'package:flutter_provider_examples/provider/favorite_provider.dart';
 import 'package:flutter_provider_examples/screens/home.dart';
 import 'package:provider/provider.dart';
 
@@ -13,22 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CounterProvider(),
-        ),
-      ],
-      builder: (context, child) {
-        final provider = Provider.of<ThemeProvider>(context);
-        return MaterialApp(
-          theme: provider.theme,
-          home: const HomePage(),
-        );
-      },
+    return ChangeNotifierProvider(
+      create: (context) => FavoriteProvider(),
+      child: const MaterialApp(
+        home: HomePage(),
+      ),
     );
   }
 }
